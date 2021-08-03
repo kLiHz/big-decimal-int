@@ -40,7 +40,20 @@ public:
         }
     }
 
-    // BigDecimalInt(std::string const & s) {}
+    BigDecimalInt(std::string s) {
+        bool negative = false;
+        if (s.at(0) == '-') {
+            s.erase(0, 1);
+            negative = true;
+        }
+        while (s.length() > N) {
+            auto val = s.substr(s.length() - N);
+            data.push_back(std::stoi(val));
+            s.erase(s.length() - N, N);
+        }
+        data.push_back(std::stoi(s));
+        if (negative) (*this) = -(*this);
+    }
 
     BigDecimalInt(const BigDecimalInt & i) : data(i.data) {}
 
@@ -218,6 +231,13 @@ public:
 
     friend std::ostream & operator<< (std::ostream & os, BigDecimalInt const& a) {
         os << to_string(a); return os;
+    }
+
+    friend std::istream & operator>> (std::istream & is, BigDecimalInt & a) {
+        std::string s;
+        is >> s;
+        a = BigDecimalInt(s);
+        return is;
     }
 };
 
