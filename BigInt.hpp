@@ -239,6 +239,10 @@ public:
         a = BigDecimalInt(s);
         return is;
     }
+
+    auto size() { return data.size(); }
+    auto shrink() { data.shrink_to_fit(); }
+    auto mem() { return data.capacity() * (std::numeric_limits<T>().digits / 8); } // Bytes
 };
 
 using MyInt = BigDecimalInt<int>;
