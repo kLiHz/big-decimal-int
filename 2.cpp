@@ -1,16 +1,16 @@
 #include "BigInt.hpp"
 
-void factorial()
-{
-    MyInt result, a = 1;
-    for (int i = 1; i <= 20; i++) {
+auto factorial_sum(int n) {
+    MyInt result = 1, a = 1;
+    for (int i = 2; i <= n; i++) {
         a *= i;
-        std::cout << i << "! = " << a << std::endl;
         result += a;
     }
-    std::cout << "Their sum is " << result;
+    return result;
 }
 
 int main() {
-    factorial();
+    int n;
+    std::cin >> n;
+    std::cout << factorial_sum(n);
 }
