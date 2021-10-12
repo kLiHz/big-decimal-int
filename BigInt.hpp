@@ -90,6 +90,10 @@ public:
         }
     }
 
+    bool operator>=(BigDecimalInt const & other) const {
+        return !(*this < other);
+    }
+
     bool operator==(BigDecimalInt const & other) const {
         auto x = rbegin(this->data);
         auto y = rbegin(other.data);
@@ -155,7 +159,7 @@ public:
         return {new_data};
     }
 
-    BigDecimalInt operator*(int val) const {
+    BigDecimalInt operator*(long long int val) const {
         // bool same_sign = ((val < 0) == ((*this) < 0));
         if ((*this) < 0) {
             return val < 0 ? (-(*this)) * - val : - ((-(*this)) * val);
