@@ -3,6 +3,7 @@
 #include <string>
 #include <cmath>
 #include <numeric>
+#include <limits>
 #include <algorithm>
 
 template<typename T>
